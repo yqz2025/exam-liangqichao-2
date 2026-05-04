@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁启超家风知识竞赛</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family: "Microsoft YaHei",sans-serif}
+        body{background:#f5f7fa;padding-top:60px}
+        .card{max-width:460px;margin:0 auto;background:white;padding:40px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+        .title{text-align:center;font-size:24px;margin-bottom:30px;color:#2c3e50}
+        .input-item{margin-bottom:20px}
+        .input-item label{display:block;margin-bottom:8px;color:#555}
+        .input-item input{width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px}
+        .btn{width:100%;padding:15px;background:#2d67ea;color:white;border:none;border-radius:8px;font-size:16px;margin-top:10px;cursor:pointer}
+        .btn:hover{background:#1d55d1}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="title">梁启超家风知识答题</div>
+        <div class="input-item">
+            <label>姓名</label>
+            <input id="name" placeholder="请输入你的姓名">
+        </div>
+        <div class="input-item">
+            <label>班别</label>
+            <input id="className" placeholder="例如：22级计算机1班">
+        </div>
+        <div class="input-item">
+            <label>专业部门</label>
+            <input id="major" placeholder="例如：信息技术部">
+        </div>
+        <button class="btn" onclick="register()">确认进入答题</button>
+    </div>
+
+    <script>
+        async function register(){
+            const name = document.getElementById('name').value.trim()
+            const className = document.getElementById('className').value.trim()
+            const major = document.getElementById('major').value.trim()
+            if(!name || !className || !major){
+                alert('请填写完整信息')
+                return
+            }
+            const res = await fetch('/api/register',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({name,className,major})
+            })
+            const data = await res.json()
+            if(!data.success){
+                alert(data.msg)
+                return
+            }
+            localStorage.studentId = data.student.id
+            location.href = 'exam.html'
+        }
+    </script>
+</body>
+</html>
