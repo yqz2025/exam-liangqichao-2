@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="card">
-        <div class="title">梁启超家风知识答题</div>
+        <div class="title">“启超家风代代传”主题知识竞赛</div>
         <div class="input-item">
             <label>姓名</label>
             <input id="name" placeholder="请输入你的姓名">
@@ -29,7 +29,14 @@
         </div>
         <div class="input-item">
             <label>专业部门</label>
-            <input id="major" placeholder="例如：信息技术部">
+            <select id="major" style="width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:8px;font-size:15px">
+                <option value="">请选择专业部门</option>
+                <option value="经管部">经管部</option>
+                <option value="幼康部">幼康部</option>
+                <option value="汽车部">汽车部</option>
+                <option value="机电部">机电部</option>
+                <option value="信息部">信息部</option>
+            </select>
         </div>
         <button class="btn" onclick="register()">确认进入答题</button>
     </div>
